@@ -5,6 +5,12 @@
 @import url('layout.css');
 @import url('skeleton.css');
 
+@font-face
+{
+font-family: intro;
+src:url(font/Intro.otf);
+}
+
 body
 {
 	background:white;
@@ -173,7 +179,8 @@ body
 	
 }
 .footerblkhead  {
-	font-size : 30px;
+	font-size : 24px;
+	font-family:intro;
 	line-height : 30px;
 	font-weight : bold;
 
@@ -194,7 +201,7 @@ body
 	width : 240px;
 	position : relative;
 	float : left;
-
+	font-size:20px;
 }
 .footerblk4 {
 	width : 240px;
@@ -204,7 +211,8 @@ body
 }
 
 .footerblkdesc {
-	font-size : 24px;
+	font-size : 16px;
+	font-family:intro;
 	line-height : 24px;
 
 }
