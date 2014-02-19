@@ -62,8 +62,7 @@
 
     <?php if($this->getLastPageNum()>1): ?>
     <div class="pages">
-        <strong><?php echo $this->__('Page:') ?></strong>
-        <ol>
+        <ul>
         <?php if (!$this->isFirstPage()): ?>
             <li>
                 <a class="previous<?php if(!$this->getAnchorTextForPrevious()): ?> i-previous<?php endif;?>" href="<?php echo $this->getPreviousPageUrl() ?>" title="<?php echo $this->__('Previous') ?>">
@@ -112,7 +111,7 @@
                 </a>
             </li>
         <?php endif;?>
-        </ol>
+        </ul>
 
     </div>
     <?php endif; ?>
