@@ -39,35 +39,70 @@
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
 <?php else: ?>
 <div class="category-products">
-    <?php echo $this->getToolbarHtml() ?>
     <?php // Grid Mode ?>
+		
+	
+<script src="http://localhost/magenta/skin/frontend/theagelesswk/default/js/modernizr-transitions.js"></script>
 
+		
+		<div id = "faBoxGroup" class = "productList transitions-enabled clearfix">
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
     <?php $i=0; foreach ($_productCollection as $_product): ?>
         <?php if ($i++%$_columnCount==0): ?>
-        <ul class="products-grid">
+        
         <?php endif ?>
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
-                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
-                <?php if($_product->getRatingSummary()): ?>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                <?php endif; ?>
-                <?php echo $this->getPriceHtml($_product, true) ?>
-                <div class="actions">
-                    <?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
-                    <?php else: ?>
-                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                    <?php endif; ?>
-                </div>
-            </li>
+		
+		
+				
+				<div class = "faBox">
+					<div class = "faBoxPic">
+						<a href = "<?php echo $_product->getProductUrl() ?>"><img src = "<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width = "100%" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>">
+				</a>
+					</div>
+					
+					<div class = "faBoxDesc">
+						<header class = "faBoxTitle">
+							<a href = "<?php echo $_product->getProductUrl() ?>"><span class = "faBoxColorBox" style = "background-color : ;">O.</span> <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+				</a>
+						</header>
+						<footer class = "faBoxPrice">
+						 <?php echo $this->getPriceHtml($_product, true) ?>
+						</footer>
+					</div>
+				</div>
+            
+               
         <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
-        </ul>
+        
         <?php endif ?>
         <?php endforeach ?>
-        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+
+		</div>
+		</div>
+		</div>
+		</div>
+		
+		
+		
+		
+		
+	
+<script src="http://localhost/magenta/skin/frontend/theagelesswk/default/js/jquery-1.9.1.min.js"></script>
+<script src="http://localhost/magenta/skin/frontend/theagelesswk/default/js/jquery.masonry.js"></script>
+
+<script>
+  $(function(){
+    
+    $('#faBoxGroup').masonry({
+      itemSelector: '.faBox',
+      columnWidth: 100,
+      isAnimated: !Modernizr.csstransitions,
+      isFitWidth: true
+    });
+    
+  });
+</script>
 
 
     <div class="toolbar-bottom">
